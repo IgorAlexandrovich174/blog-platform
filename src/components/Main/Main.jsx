@@ -21,7 +21,7 @@ export default function Main() {
                         display="flex"
                         flexDirection="column"
                     >
-                        {data.map((article) => (
+                        {data?.articles?.map((article) => (
                             <ArticleCard article={article} key={article.slug}/>
                         ))}
                     </Box>

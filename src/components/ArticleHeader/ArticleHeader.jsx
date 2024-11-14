@@ -15,12 +15,12 @@ export default function ArticleHeader({ article }) {
             <Box className={styles["article-header"]}>
                 <Box className={styles["article-title"]}>
                     <Link variant="h6" underline="none" onClick={handleTitleClick}>
-                        {article.title}
+                        {article?.title}
                     </Link>
                     <Stack direction="row" alignItems="center"
                            className={styles["like-container"]}>
                         <FavoriteBorderIcon fontSize="small"/>
-                        <Typography variant="body2">{article.favoritesCount}</Typography>
+                        <Typography variant="body2">{article?.favoritesCount}</Typography>
 
                     </Stack>
                 </Box>
@@ -29,13 +29,13 @@ export default function ArticleHeader({ article }) {
                     <Chip label="SomeTag" size="small"/>
                 </Stack>
                 <Typography variant="body2" className={styles["description"]}>
-                    {article.description}
+                    {article?.description}
                 </Typography>
             </Box>
             <Box className={styles["author-container"]}>
                 <Stack direction="row-reverse" alignItems="center"
                        className={styles["author-details"]}>
-                    <Avatar className={styles["avatar"]} src={article.author.image}/>
+                    <Avatar className={styles["avatar"]} src={article?.author.image}/>
                     <Stack
                         direction="column"
                         width={100}
@@ -43,10 +43,10 @@ export default function ArticleHeader({ article }) {
                         alignItems="center"
                     >
                         <Link variant="body2" className={styles["author-name"]} underline="none">
-                            {article.author.username}
+                            {article?.author.username}
                         </Link>
                         <Typography variant="caption" className={styles["date"]}>
-                            {new Date(article.createdAt).toLocaleDateString('en-US', {
+                            {new Date(article?.createdAt).toLocaleDateString('en-US', {
                                 month: 'long',
                                 day: 'numeric',
                                 year: 'numeric'

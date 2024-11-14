@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 
 export default function ArticlePage() {
     const {slug} = useParams();
-    const article = useSelector((state) => state.articles.find((art) => art.slug === slug));
+    const article = useSelector((state) => state.articles?.find((art) => art.slug === slug));
     console.log("Article", article);
     return (
         <Container className={"container"}>
