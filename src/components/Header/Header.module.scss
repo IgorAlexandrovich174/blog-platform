@@ -1,0 +1,37 @@
+.header {
+  flex-grow: 1;
+
+  .app-bar {
+    position: static;
+    background-color: #FFFFFF;
+    box-shadow: none;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-bottom: 50px;
+  }
+
+  .toolbar {
+    justify-content: space-between;
+  }
+
+  .title {
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+  }
+
+  .sign-in-button {
+    color: black;
+    margin-right: 16px;
+  }
+
+  .sign-up-button {
+    color: #5cb85c;
+    border-color: #5cb85c;
+
+    &:hover {
+      border-color: #4cae4c;
+      background-color: rgba(92, 184, 92, 0.1);
+    }
+  }
+}

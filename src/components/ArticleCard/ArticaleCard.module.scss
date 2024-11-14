@@ -1,0 +1,9 @@
+.article-card {
+  display: flex;
+  flex-direction: column;
+  .markdown {
+    padding-left: 16px;
+    margin-bottom: 30px;
+  }
+}
+

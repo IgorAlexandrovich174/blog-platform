@@ -1,0 +1,63 @@
+.article-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+
+  .article-title {
+    display: flex;
+    gap: 13px;
+    color: #1890ff;
+    cursor: pointer;
+    margin: 0;
+
+    .like-container {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .tags {
+    margin: 8px 0;
+
+    .MuiChip-root {
+      margin-right: 5px;
+    }
+  }
+
+  .description {
+    color: #757575;
+    margin-bottom: 8px;
+  }
+}
+
+.author-container {
+  display: flex;
+  align-items: baseline;
+  margin-left: 16px;
+  padding: 15px;
+
+  .author-details {
+    text-align: center;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: 100px;
+
+    .author-name {
+      font-weight: bold;
+      cursor: pointer;
+      color: #1976d2;
+    }
+
+    .date {
+      color: #9e9e9e;
+    }
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 8px;
+  }
+}
