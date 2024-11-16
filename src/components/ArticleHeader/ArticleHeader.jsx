@@ -35,7 +35,7 @@ export default function ArticleHeader({ article }) {
             <Box className={styles["author-container"]}>
                 <Stack direction="row-reverse" alignItems="center"
                        className={styles["author-details"]}>
-                    <Avatar className={styles["avatar"]} src={article?.author.image}/>
+                    <Avatar className={styles["avatar"]} src={article?.author?.image}/>
                     <Stack
                         direction="column"
                         width={100}
@@ -43,7 +43,7 @@ export default function ArticleHeader({ article }) {
                         alignItems="center"
                     >
                         <Link variant="body2" className={styles["author-name"]} underline="none">
-                            {article?.author.username}
+                            {article?.author?.username}
                         </Link>
                         <Typography variant="caption" className={styles["date"]}>
                             {new Date(article?.createdAt).toLocaleDateString('en-US', {
