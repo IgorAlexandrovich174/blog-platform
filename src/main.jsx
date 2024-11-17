@@ -6,12 +6,17 @@ import {store} from "./store/store.js";
 import {Provider} from "react-redux";
 import ArticlePage from "./pages/ArticlePage/ArticlePage.jsx";
 import MainPage from "./pages/MainPage/MainPage.jsx";
+import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
+import {Login} from "@mui/icons-material";
+import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<Layout />}>
             <Route index element={<MainPage />} />
             <Route path="/articles/:slug" element={<ArticlePage />} />
+            <Route path="/sign-up" element={<RegisterPage />} />
+            <Route path="/sign-in" element={<LoginPage />} />
         </Route>
     )
 );

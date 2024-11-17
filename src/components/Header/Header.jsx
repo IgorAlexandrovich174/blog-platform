@@ -10,6 +10,14 @@ export default function Header() {
         navigate("/");
     }
 
+    const handleSignUpClick = () => {
+        navigate("/sign-up");
+    }
+
+    const handleSignInClick = () => {
+        navigate("/sign-in");
+    }
+
     return (
         <Box
             className={styles["header"]}>
@@ -22,12 +30,12 @@ export default function Header() {
                     </Link>
                     <Box>
                         <Link>
-                            <Button variant="contained" color="inherit" className={styles["sign-in-button"]}>
+                            <Button variant="contained" color="inherit" className={styles["sign-in-button"]} onClick={handleSignInClick}>
                                 Sign In
                             </Button>
                         </Link>
                         <Link>
-                            <Button variant="outlined" className={styles["sign-up-button"]}>
+                            <Button variant="outlined" className={styles["sign-up-button"]} onClick={handleSignUpClick}>
                                 Sign Up
                             </Button>
                         </Link>
