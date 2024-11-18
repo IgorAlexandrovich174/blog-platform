@@ -63,7 +63,7 @@ export default function Header() {
                                 {data?.user.username}
                                 <Avatar src={data?.user.image || './avatar.png'} sx={{ width: 46, height: 46 }} />
                             </Button>
-                            <Button variant="logout" onClick={handleLogOut}>
+                            <Button variant="logout" onClick={handleLogOut} style={{background: "black"}}>
                                 Log Out
                             </Button>
                         </Box>
