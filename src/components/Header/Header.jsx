@@ -1,10 +1,16 @@
-import {AppBar, Box, Button, Link, Toolbar, Typography} from "@mui/material";
+import {AppBar, Avatar, Box, Button, Link, Toolbar, Typography} from "@mui/material";
 import styles from "./Header.module.scss"
 import React from "react";
 import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {useFetchCurrentUserQuery} from "../../articlesApi/articlesApi.js";
+import {logOut} from "../../authSlice/authSlice.js";
 
 export default function Header() {
     const navigate = useNavigate();
+    const jwt = useSelector((state) => state.auth.token);
+    const { data } = useFetchCurrentUserQuery();
+    const dispatch = useDispatch();
 
     const handleTitleClick = () => {
         navigate("/");
@@ -17,6 +23,10 @@ export default function Header() {
     const handleSignInClick = () => {
         navigate("/sign-in");
     }
+    const handleLogOut = () => {
+        dispatch(logOut());
+        localStorage.removeItem('token');
+    }
 
     return (
         <Box
@@ -28,18 +38,36 @@ export default function Header() {
                             Realworld Blog
                         </Typography>
                     </Link>
-                    <Box>
-                        <Link>
-                            <Button variant="contained" color="inherit" className={styles["sign-in-button"]} onClick={handleSignInClick}>
-                                Sign In
+                    {!jwt && (
+                        <Box>
+                            <Link>
+                                <Button variant="contained" color="inherit" className={styles["sign-in-button"]}
+                                        onClick={handleSignInClick}>
+                                    Sign In
+                                </Button>
+                            </Link>
+                            <Link>
+                                <Button variant="outlined" className={styles["sign-up-button"]}
+                                        onClick={handleSignUpClick}>
+                                    Sign Up
+                                </Button>
+                            </Link>
+                        </Box>
+                    )}
+                    {jwt && (
+                        <Box>
+                            <Button onClick={"/new-article"} className={styles['new-article']}>
+                                Create article
                             </Button>
-                        </Link>
-                        <Link>
-                            <Button variant="outlined" className={styles["sign-up-button"]} onClick={handleSignUpClick}>
-                                Sign Up
+                            <Button onClick={"/profile"} className={styles.profile}>
+                                {data?.user.username}
+                                <Avatar src={data?.user.image || './avatar.png'} sx={{ width: 46, height: 46 }} />
                             </Button>
-                        </Link>
-                    </Box>
+                            <Button variant="logout" onClick={handleLogOut}>
+                                Log Out
+                            </Button>
+                        </Box>
+                    )}
                 </Toolbar>
             </AppBar>
         </Box>

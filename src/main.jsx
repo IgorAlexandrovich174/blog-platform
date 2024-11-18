@@ -7,7 +7,6 @@ import {Provider} from "react-redux";
 import ArticlePage from "./pages/ArticlePage/ArticlePage.jsx";
 import MainPage from "./pages/MainPage/MainPage.jsx";
 import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
-import {Login} from "@mui/icons-material";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 
 const router = createBrowserRouter(
@@ -17,6 +16,8 @@ const router = createBrowserRouter(
             <Route path="/articles/:slug" element={<ArticlePage />} />
             <Route path="/sign-up" element={<RegisterPage />} />
             <Route path="/sign-in" element={<LoginPage />} />
+            <Route path="/new-article" element={<div>new article</div>} />
+            <Route path="/profile" element={<div>profile</div>} />
         </Route>
     )
 );

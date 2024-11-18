@@ -12,7 +12,7 @@ export default function RegisterPage() {
     const {handleSubmit, control, formState: {errors}} = useForm({
         defaultValues: {
             username: "",
-            emailAddress: "",
+            email: "",
             password: "",
             confirmPassword: "",
             agreeToTerms: false,
@@ -21,8 +21,19 @@ export default function RegisterPage() {
     });
 
     const onSubmit = async (data) => {
-        await registerUser({user: data});
+        const result = {
+            user : {
+                username: data.username,
+                email: data.email,
+                password: data.password,
+            },
+        };
+        await registerUser(result);
     }
+
+    useEffect(() => {
+        if (isSuccess) navigate('/sign-in');
+    }, [isSuccess]);
 
     return (
         <Box
@@ -118,7 +129,7 @@ export default function RegisterPage() {
                     )
                     }
                 />
-                <div style={{height: 2, background: "#E8E8E8", marginBottom: 10}}></div>
+                <div style={{height: 2, background: "#E8E8E8", marginTop: 30}}></div>
                 <FormControlLabel
                     control={
                         <Controller
@@ -128,7 +139,7 @@ export default function RegisterPage() {
                                 <Checkbox name="agreeToTerms" {...field} required />}/>
                     }
                     label="I agree to the processing of my personal information"
-                    sx={{color: "#595959"}}
+                    sx={{color: "#595959", mt: "16px"}}
                 />
 
                 <Button

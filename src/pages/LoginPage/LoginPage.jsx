@@ -1,25 +1,41 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Box, Button, TextField, Typography,} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {Controller, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {schemaLoginPage} from "./LoginPage.module.js";
 import {useLoginMutation} from "../../articlesApi/articlesApi.js";
+import {logIn} from "../../authSlice/authSlice.js";
+import {useDispatch} from "react-redux";
 
 export default function LoginPage() {
-
+    const dispatch = useDispatch();
+    const [login, {data: UserData, isSuccess}] = useLoginMutation();
     const navigate = useNavigate();
-    const {handleSubmit, control, formState: {errors}} = useForm({
+    const {
+        handleSubmit,
+        control,
+        formState: {errors}} = useForm({
         defaultValues: {
             email: "",
             password: "",
         },
         resolver: yupResolver(schemaLoginPage),
     });
-    const [login] = useLoginMutation();
+
     const onSubmit = async (data) => {
         await login({user: data}).unwrap();
     }
+
+    useEffect(()  => {
+        if (isSuccess) {
+            dispatch(logIn(UserData.user.token));
+            localStorage.setItem("token", UserData.user.token);
+            console.log(UserData.user);
+            navigate("/");
+        }
+    }, [isSuccess]);
+
 
     return (
         <Box

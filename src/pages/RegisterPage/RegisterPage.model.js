@@ -1,6 +1,5 @@
 import * as yup from "yup"
 
-
 export const schemaSignUp = yup
     .object({
         username: yup.string()

@@ -4,7 +4,17 @@ const urlApi = "https://blog-platform.kata.academy/api/";
 
 export const articlesApi = createApi({
     reducerPath: "articlesApi",
-    baseQuery: fetchBaseQuery({baseUrl: urlApi}),
+    baseQuery: fetchBaseQuery({
+        baseUrl: urlApi,
+        prepareHeaders: (headers, {getState}) => {
+            const token = getState().auth.token;
+            if (token) {
+                headers.set("Authorization", `Bearer ${token}`);
+            }
+            console.log(token);
+            return headers;
+        },}),
+
     endpoints: (build) => ({
         fetchArticles: build.query({
             query: (page = 1) => `articles?offset=${page === 1 ? 0 : (page - 1) * 20}`,
@@ -12,6 +22,11 @@ export const articlesApi = createApi({
         fetchArticleBySlug: build.query({
             query: (slug) => `articles/${slug}`,
         }),
+
+        fetchCurrentUser: build.query({
+            query: () => "user/",
+        })
+        ,
         registerUser: build.mutation({
             query: (body) => ({
                 url: "users",
@@ -29,4 +44,10 @@ export const articlesApi = createApi({
     }),
 });
 
-export const {useFetchArticlesQuery, useFetchArticleBySlugQuery, useRegisterUserMutation, useLoginMutation} = articlesApi;
+export const {
+    useFetchArticlesQuery,
+    useFetchArticleBySlugQuery,
+    useRegisterUserMutation,
+    useLoginMutation,
+    useFetchCurrentUserQuery,
+} = articlesApi;
