@@ -33,6 +33,10 @@ export default function Header() {
         navigate("/profile");
     }
 
+    const handleNewArticleClick = () => {
+        navigate("/new-article")
+    }
+
     return (
         <Box
             className={styles["header"]}>
@@ -61,12 +65,12 @@ export default function Header() {
                     )}
                     {jwt && (
                         <Box>
-                            <Button onClick={"/new-article"} className={styles['new-article']}>
+                            <Button onClick={handleNewArticleClick} className={styles["new-article"]}>
                                 Create article
                             </Button>
                             <Button onClick={handleProfileClick} className={styles.profile}>
                                 {data?.user?.username}
-                                <Avatar src={data?.user.image || './avatar.png'} sx={{ width: 46, height: 46 }} />
+                                <Avatar src={data?.user.image || "./avatar.png"} sx={{ width: 46, height: 46 }} />
                             </Button>
                             <Button variant="logout" onClick={handleLogOut} style={{background: "black"}}>
                                 Log Out

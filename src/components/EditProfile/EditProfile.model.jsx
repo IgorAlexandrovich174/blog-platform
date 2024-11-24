@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export const schemaEditProfilePage = yup.object().shape({
+export const schemaEditProfile = yup.object().shape({
     userName: yup
         .string()
         .min(3, 'Имя должно содержать не менее 3 символов')

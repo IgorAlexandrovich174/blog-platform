@@ -50,6 +50,14 @@ export const articlesApi = createApi({
             }),
             invalidatesTags: ["User"],
         }),
+        createNewArticle: build.mutation({
+            query: (body) => ({
+                url: "articles",
+                method: "POST",
+                body,
+            }),
+            invalidatesTags: ["Feed"],
+        })
     }),
 });
 
@@ -60,4 +68,5 @@ export const {
     useLoginMutation,
     useFetchCurrentUserQuery,
     useUpdateUserProfileMutation,
+    useCreateNewArticleMutation,
 } = articlesApi;

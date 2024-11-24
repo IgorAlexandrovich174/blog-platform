@@ -3,10 +3,10 @@ import {Box, Button, TextField, Typography} from "@mui/material";
 import {useFetchCurrentUserQuery, useUpdateUserProfileMutation} from "../../articlesApi/articlesApi.js";
 import {Controller, useForm } from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {schemaEditProfilePage} from "./EditProfilePage.model.jsx";
+import {schemaEditProfile} from "./EditProfile.model.jsx";
 import {useNavigate} from "react-router-dom";
 
-const EditProfilePage = () => {
+const EditProfile = () => {
     const navigate = useNavigate();
     const {data: userData} = useFetchCurrentUserQuery();
     const [updateUserProfile, { isSuccess}] = useUpdateUserProfileMutation();
@@ -17,7 +17,7 @@ const EditProfilePage = () => {
             password: '',
             image: userData?.user?.image || '',
         },
-        resolver: yupResolver(schemaEditProfilePage),
+        resolver: yupResolver(schemaEditProfile),
     })
 
     const onSubmit = async (formData) => {
@@ -29,8 +29,6 @@ const EditProfilePage = () => {
                 image: formData.image || null,
             }
         }).unwrap();
-        console.log(isSuccess);
-        console.log(formData)
     }
 
     useEffect(() => {
@@ -140,4 +138,4 @@ const EditProfilePage = () => {
     );
 };
 
-export default EditProfilePage;
+export default EditProfile;
