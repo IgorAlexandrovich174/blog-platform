@@ -10,7 +10,7 @@ import {useDispatch} from "react-redux";
 
 export default function LoginPage() {
     const dispatch = useDispatch();
-    const [login, {data: UserData, isSuccess}] = useLoginMutation();
+    const [login, {data: userData, isSuccess}] = useLoginMutation();
     const navigate = useNavigate();
     const {
         handleSubmit,
@@ -29,9 +29,9 @@ export default function LoginPage() {
 
     useEffect(()  => {
         if (isSuccess) {
-            dispatch(logIn(UserData.user.token));
-            localStorage.setItem("token", UserData.user.token);
-            console.log(UserData.user);
+            dispatch(logIn(userData.user.token));
+            localStorage.setItem("token", userData.user.token);
+            console.log(userData.user);
             navigate("/");
         }
     }, [isSuccess]);
@@ -86,6 +86,7 @@ export default function LoginPage() {
                     render={({field}) => <TextField
                         {...field}
                         label="Password"
+                        type="password"
                         fullWidth
                         margin="normal"
                         error={Boolean(errors.password)}

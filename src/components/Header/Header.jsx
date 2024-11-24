@@ -1,6 +1,6 @@
 import {AppBar, Avatar, Box, Button, Link, Toolbar, Typography} from "@mui/material";
 import styles from "./Header.module.scss"
-import React from "react";
+import React, {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useFetchCurrentUserQuery} from "../../articlesApi/articlesApi.js";
@@ -23,9 +23,14 @@ export default function Header() {
     const handleSignInClick = () => {
         navigate("/sign-in");
     }
+
     const handleLogOut = () => {
         dispatch(logOut());
         localStorage.removeItem('token');
+    }
+
+    const handleProfileClick = () => {
+        navigate("/profile");
     }
 
     return (
@@ -59,8 +64,8 @@ export default function Header() {
                             <Button onClick={"/new-article"} className={styles['new-article']}>
                                 Create article
                             </Button>
-                            <Button onClick={"/profile"} className={styles.profile}>
-                                {data?.user.username}
+                            <Button onClick={handleProfileClick} className={styles.profile}>
+                                {data?.user?.username}
                                 <Avatar src={data?.user.image || './avatar.png'} sx={{ width: 46, height: 46 }} />
                             </Button>
                             <Button variant="logout" onClick={handleLogOut} style={{background: "black"}}>

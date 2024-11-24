@@ -12,7 +12,34 @@
 
   .toolbar {
     justify-content: space-between;
+
+    .new-article {
+      color: #5cb85c;
+      border: 1px solid #5cb85c;
+      border-radius: 5px;
+      padding: 5px 12px;
+      text-transform: none;
+      font-weight: 500;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(92, 184, 92, 0.1);
+        border-color: #4cae4c;
+      }
+    }
+    .profile {
+      align-items: center;
+      gap: 10px;
+      color: black;
+      text-transform: none;
+      font-weight: 500;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
   }
+
+
 
   .title {
     font-weight: bold;
@@ -35,3 +62,4 @@
     }
   }
 }
+
