@@ -4,7 +4,7 @@ const urlApi = "https://blog-platform.kata.academy/api/";
 
 export const articlesApi = createApi({
     reducerPath: "articlesApi",
-    tagTypes: ['User', 'Article', 'Feed'],
+    tagTypes: ["User", "Article", "Feed"],
     baseQuery: fetchBaseQuery({
         baseUrl: urlApi,
         prepareHeaders: (headers, {getState}) => {
@@ -19,9 +19,11 @@ export const articlesApi = createApi({
     endpoints: (build) => ({
         fetchArticles: build.query({
             query: (page = 1) => `articles?offset=${page === 1 ? 0 : (page - 1) * 20}`,
+            providesTags: ["Feed"],
         }),
         fetchArticleBySlug: build.query({
             query: (slug) => `articles/${slug}`,
+            providesTags: ["Articles"],
         }),
         fetchCurrentUser: build.query({
             query: () => "user/",
@@ -40,7 +42,7 @@ export const articlesApi = createApi({
                 method: "POST",
                 body,
             }),
-            invalidatesTags: ['User'],
+            invalidatesTags: ["User"],
         }),
         updateUserProfile: build.mutation({
             query: (body) => ({
