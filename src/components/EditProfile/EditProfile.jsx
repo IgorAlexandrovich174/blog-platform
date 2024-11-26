@@ -3,7 +3,7 @@ import {Box, Button, TextField, Typography} from "@mui/material";
 import {useFetchCurrentUserQuery, useUpdateUserProfileMutation} from "../../articlesApi/articlesApi.js";
 import {Controller, useForm } from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {schemaEditProfile} from "./EditProfile.model.jsx";
+import {schemaEditProfile} from "./EditProfile.model.js";
 import {useNavigate} from "react-router-dom";
 
 const EditProfile = () => {

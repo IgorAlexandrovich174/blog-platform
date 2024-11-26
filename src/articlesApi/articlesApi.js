@@ -23,7 +23,7 @@ export const articlesApi = createApi({
         }),
         fetchArticleBySlug: build.query({
             query: (slug) => `articles/${slug}`,
-            providesTags: ["Articles"],
+            providesTags: ["Article"],
         }),
         fetchCurrentUser: build.query({
             query: () => "user/",
@@ -59,7 +59,29 @@ export const articlesApi = createApi({
                 body,
             }),
             invalidatesTags: ["Feed"],
-        })
+        }),
+        updateArticle: build.mutation({
+            query: (data) => ({
+                url: `articles/${data.slug}`,
+                method: "PUT",
+                body: data.body,
+            }),
+            invalidatesTags: ["Feed", "Article"],
+        }),
+        deleteArticle: build.mutation({
+            query: (slug) => ({
+                url: `/articles/${slug}`,
+                method: 'Delete',
+            }),
+            invalidatesTags: ['Feed'],
+        }),
+        likeArticle: build.mutation({
+            query: (slug) => ({
+                url: `articles/${slug}/favorite`,
+                method: "POST",
+            }),
+            invalidatesTags: ["Feed", "Article"],
+        }),
     }),
 });
 
@@ -71,4 +93,7 @@ export const {
     useFetchCurrentUserQuery,
     useUpdateUserProfileMutation,
     useCreateNewArticleMutation,
+    useUpdateArticleMutation,
+    useDeleteArticleMutation,
+    useLikeArticleMutation,
 } = articlesApi;
